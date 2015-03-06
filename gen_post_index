@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+cd posts
+for p in *; do
+    title="$(head -1 "$p" | cut -d\| -f1)"
+    echo "<li><a href=\"/$p.html\">$title</a></li>"
+done
+cd ..

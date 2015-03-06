@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+post_file="$(printf "$1" | sed 's/^.*\///')"
+title="$(head -1 "$1" | cut -d\| -f1)"
+tail -n +2 "$1" > /tmp/post_contents
+cpp -D__POST_TITLE="$title" -D__POST_FILE=\"/tmp/post_contents\" post.template.html | sed '/^#.*/d'
+rm -f /tmp/post_contents
